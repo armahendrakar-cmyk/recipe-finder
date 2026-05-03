@@ -1,0 +1,120 @@
+/* src/pages/RecipePage.css */
+
+.recipe-page {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-page-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  color: #333;
+}
+
+/* This creates our two-column layout */
+.recipe-layout {
+  display: flex;
+  flex-wrap: wrap; /* Allows columns to stack on smaller screens */
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.recipe-image-container {
+  flex: 1; /* Each column takes up equal space */
+  min-width: 300px; /* Prevents columns from getting too squished */
+}
+
+.recipe-info-container {
+  flex: 1;
+  min-width: 300px;
+}
+
+.recipe-page-image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-info-container h2,
+.recipe-instructions h2 {
+  font-size: 1.75rem;
+  color: #444;
+  border-bottom: 2px solid #f0a500;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.ingredient-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.ingredient-list li {
+  background-color: #f9f9f9;
+  border-left: 4px solid #f0a500;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0 4px 4px 0;
+}
+
+.recipe-instructions p {
+  line-height: 1.8;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem; /* Adds space between paragraphs */
+  color: #555;
+}
+
+/* For loading and error messages */
+.loading-message, .error-message {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 4rem;
+  color: #666;
+}
+
+/* Add these new styles to src/pages/RecipePage.css */
+
+.favorite-action {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.save-button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #f0a500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.save-button:hover {
+  background-color: #d89400;
+  transform: translateY(-2px);
+}
+
+.feedback-message {
+  text-align: center;
+  padding: 0.75rem;
+  margin: 1rem 0;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.feedback-message.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.feedback-message.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}

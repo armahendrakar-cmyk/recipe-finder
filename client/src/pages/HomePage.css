@@ -1,0 +1,25 @@
+/* src/pages/HomePage.css */
+
+.home-page {
+  /* Center the content and add some padding */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.recipe-list {
+  /* This is the core of our grid layout */
+  display: grid;
+  /* Create responsive columns. It will try to fit as many 300px columns as it can. */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem; /* The space between the grid items (our cards) */
+  margin-top: 2rem;
+  text-align: left; /* Reset text alignment for the cards themselves */
+}
+
+.no-results-message {
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  color: #666;
+}
