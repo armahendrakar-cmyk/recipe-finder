@@ -2,7 +2,7 @@
 
 A full-stack MERN application that allows users to search for recipes from a vast database, save their favorites, and add personal notes. This project showcases a complete development cycle from backend API design to a polished, responsive, and interactive frontend.
 
-**Live Demo Link:** [Your Deployed App Link Will Go Here]
+**Live Demo Link:** https://recipefinder-mern.netlify.app/
 
 ---
 
