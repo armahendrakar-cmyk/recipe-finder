@@ -7,7 +7,9 @@ import axios from 'axios';
 // The 'import.meta.env' object is where Vite exposes these variables.
 // This line securely gets the 'https://www.themealdb.com/api/json/v1/1/' string
 // that you stored in your .env.local file.
+// Add a console log to see if the URL is actually loading
 const API_URL = import.meta.env.VITE_RECIPE_API_URL;
+console.log("Current Recipe API URL:", API_URL);
 
 // Create a new instance of axios with a custom configuration.
 // This is a best practice for managing API communications.

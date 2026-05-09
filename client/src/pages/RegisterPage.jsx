@@ -1,11 +1,11 @@
 // src/pages/RegisterPage.jsx
 
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext'; // Import AuthContext
 import './AuthForm.css';
 import { Container, Box, Typography, TextField, Button, Alert } from '@mui/material';
-
+import { register as registerService } from '../services/authService';
 
 /**
  * The RegisterPage component. This will eventually contain the form
@@ -21,7 +21,7 @@ const RegisterPage = () => {
   
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const { register } = useContext(AuthContext);
+  
 
   const handleChange = (e) => {
   setFormData({
@@ -37,13 +37,11 @@ const RegisterPage = () => {
     try {
       // Call the register function from the service, passing in the form data.
       // We `await` the response from the server.
-      const data = await register(formData);
+      const data = await registerService(formData);
       if (data.token) {
         // 1. Save the token to localStorage
         localStorage.setItem('token', data.token);
 
-        // 2. Update the global AuthContext state with the user data
-        register(data);
 
         // 3. Redirect the user to the homepage
         navigate('/');
@@ -112,11 +110,11 @@ const RegisterPage = () => {
             margin="normal"
             required
             fullWidth
-            name="Name"
-            label="Name"
-            id="Name"
-            autoComplete="Name"
-            value={formData.Name}
+            name="name"
+            label="name"
+            id="name"
+            autoComplete="name"
+            value={formData.name}
             onChange={handleChange}
           />
           {/* Conditionally render an Alert for displaying login errors. */}
