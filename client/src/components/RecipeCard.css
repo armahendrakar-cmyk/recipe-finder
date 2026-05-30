@@ -1,48 +1,29 @@
 /* src/components/RecipeCard.css */
-.recipe-link {
-  /* This removes the default blue color and underline from the link */
+
+.recipe-card-link {
   text-decoration: none;
   color: inherit;
-  
-  /* This ensures the link itself takes up the full space in the grid cell */
   display: block;
 }
-.recipe-card {
-  /* Basic card styling */
-  border: 1px solid #e0e0e0;
-  border-radius: 12px;
-  background-color: #fff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 
-  /* Layout and sizing */
-  display: flex;
-  flex-direction: column;
-  overflow: hidden; /* Ensures the image's rounded corners are respected */
-
-  /* Interaction feedback */
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  
+.recipe-card-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #c47d1a;
+  background: rgba(196, 125, 26, 0.1);
+  padding: 3px 10px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.4rem;
 }
 
-.recipe-card:hover {
-  transform: translateY(-5px); /* Lifts the card slightly on hover */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
-}
-
-.recipe-card-image {
-  width: 100%;
-  height: 200px;      /* We give the image a fixed height for a consistent grid layout. */
-  object-fit: cover;  /* This crucial property ensures the image fills the space without being stretched or squashed. */
-}
-
-.recipe-card-body {
-  padding: 1rem;
-}
-
-.recipe-card-title {
-  /* Reset default margins and set a clean font style */
-  margin: 0;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #333;
+.recipe-card-title-text {
+  font-family: 'Playfair Display', serif !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  color: #1a1208 !important;
+  line-height: 1.3 !important;
+  margin: 0 !important;
 }

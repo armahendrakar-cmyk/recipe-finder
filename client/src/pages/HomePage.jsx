@@ -1,79 +1,159 @@
 // src/pages/HomePage.jsx
-
 import React, { useState } from 'react';
-import SearchBar from '../components/SearchBar';
 import { searchRecipes } from '../services/recipeService';
-// HIGHLIGHT: Import the RecipeCard component we just created
 import RecipeCard from '../components/RecipeCard';
-// HIGHLIGHT: Import the CSS for our page layout
-import Loader from '../components/Loader';
-import './HomePage.css';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorComponent from '../components/ErrorComponent';
-import { Container, Grid, Typography, Box } from '@mui/material';
-// This is the main page where users will search for recipes.
-// For now, it's just a simple placeholder.
+import { Container, Grid, Typography, Button, Box } from '@mui/material';
+import './HomePage.css';
+
+const CATEGORIES = [
+  { emoji: '🍳', name: 'Breakfast' },
+  { emoji: '🥗', name: 'Salads' },
+  { emoji: '🍲', name: 'Soups' },
+  { emoji: '🍝', name: 'Pasta' },
+  { emoji: '🥩', name: 'Grills' },
+  { emoji: '🍰', name: 'Desserts' },
+];
+
+const QUICK_TAGS = ['🍝 Pasta', '🍛 Curry', '🥗 Salads', '🍰 Desserts', '🍕 Pizza'];
+
 const HomePage = () => {
   const [recipes, setRecipes] = useState([]);
   const [searched, setSearched] = useState(false);
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState('');
-  const handleSearch = async (query) => {
-  if (!query) return;
 
-  setLoading(true);
-  setSearched(true);
+  const handleSearch = async (searchQuery) => {
+    if (!searchQuery || !searchQuery.trim()) return;
+    setLoading(true);
+    setSearched(true);
+    try {
+      const results = await searchRecipes(searchQuery);
+      setRecipes(results || []);
+    } catch (error) {
+      console.error('Search failed:', error);
+      setRecipes([]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  try {
-    const results = await searchRecipes(query);
-    setRecipes(results || []);
-  } catch (error) {
-    console.error("Search failed:", error);
-    setRecipes([]);
-  } finally {
-    setLoading(false);
-  }
-};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleSearch(query);
+  };
 
-  // You can add this console.log to see the state update in real-time
+  const handleTagClick = (tag) => {
+    const clean = tag.replace(/^[^\w]+/, '').trim();
+    setQuery(clean);
+    handleSearch(clean);
+  };
+
+  const handleCategoryClick = (name) => {
+    setQuery(name);
+    handleSearch(name);
+  };
+
   return (
-    // Container centers our content and gives it a max-width for readability.
-    <Container sx={{ py: 4 }}> {/* py is padding on y-axis */}
-      <Typography variant="h3" component="h1" align="center" gutterBottom>
-        Recipe Finder
-      </Typography>
-      <Typography variant="h6" align="center" color="text.secondary" paragraph>
-        Discover your next favorite meal. Search for any recipe you can imagine!
-      </Typography>
-      
-      <SearchBar query={query} setQuery={setQuery} handleSearch={handleSearch} />
+    <>
+      {/* ── Hero ── */}
+      <section className="hero-section">
+        <div className="hero-bg">
+          <div className="hero-blob hero-blob-1" />
+          <div className="hero-blob hero-blob-2" />
+          <div className="hero-blob hero-blob-3" />
+        </div>
 
-      {/* --- HIGHLIGHT: Replace the old .recipe-grid with MUI's Grid system --- */}
-      
-      {/* 1. The outer Grid component needs the `container` prop. 
-             `spacing={4}` adds consistent space between all grid items. */}
-      <Grid container spacing={4} sx={{ mt: 4 }}>
-        {loading ? (
-        // Instead of plain text, render your sophisticated spinner component.
-        <LoadingSpinner />
-      ) : (
-        // The rest of your grid rendering logic remains unchanged.
-        <Grid container spacing={4} sx={{ mt: 4 }}>
-          {recipes.map((recipe) => (
-            <Grid item key={recipe.idMeal} xs={12} sm={6} md={4} lg={3}>
-              <RecipeCard recipe={recipe} />
-            </Grid>
-          ))}
-        </Grid>
-      )}
-      </Grid>
+        <div className="hero-content">
+          <div className="hero-eyebrow">✦ Over 10,000 recipes</div>
 
-      {searched && !loading && recipes.length === 0 && (
-        <Typography align="center" sx={{ mt: 4 }}>
-          No recipes found for "{query}". Please try another search.
-        </Typography>
+          <Typography variant="h1" className="hero-title">
+            Find your next<br /><em>favorite meal</em>
+          </Typography>
+
+          <Typography variant="body1" className="hero-subtitle">
+            Search any dish, ingredient, or cuisine — and discover recipes you'll actually want to make.
+          </Typography>
+
+          {/* Search bar */}
+          <div className="search-wrapper">
+            <form onSubmit={handleSubmit}>
+              <div className="search-bar-inner">
+                <span className="search-icon">🔍</span>
+                <input
+                  className="search-input"
+                  type="text"
+                  placeholder="Try 'pasta', 'chicken curry', 'vegan tacos'…"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
+                <Button type="submit" variant="contained" className="search-submit-btn">
+                  Search
+                </Button>
+              </div>
+            </form>
+          </div>
+
+          {/* Quick tags */}
+          <div className="quick-tags">
+            <span className="tag-label">Popular:</span>
+            {QUICK_TAGS.map((tag) => (
+              <button key={tag} className="quick-tag" onClick={() => handleTagClick(tag)}>
+                {tag}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Categories (only when no search yet) ── */}
+      {!searched && (
+        <section className="categories-section">
+          <div className="section-header">
+            <Typography className="section-title">Browse by category</Typography>
+            <Typography className="section-subtitle">What are you in the mood for?</Typography>
+          </div>
+          <div className="cat-grid">
+            {CATEGORIES.map(({ emoji, name }) => (
+              <div key={name} className="cat-card" onClick={() => handleCategoryClick(name)}>
+                <div className="cat-emoji">{emoji}</div>
+                <div className="cat-name">{name}</div>
+              </div>
+            ))}
+          </div>
+        </section>
       )}
-    </Container>
+
+      {/* ── Results ── */}
+      {searched && (
+        <section className="results-section">
+          <Container maxWidth="xl">
+            {loading ? (
+              <LoadingSpinner />
+            ) : recipes.length > 0 ? (
+              <>
+                <div className="section-header">
+                  <Typography className="section-title">Search Results</Typography>
+                  <Typography className="section-subtitle">{recipes.length} recipes found</Typography>
+                </div>
+                <Grid container spacing={3} sx={{ mt: 1 }}>
+                  {recipes.map((recipe) => (
+                    <Grid item key={recipe.idMeal} xs={12} sm={6} md={4} lg={3}>
+                      <RecipeCard recipe={recipe} />
+                    </Grid>
+                  ))}
+                </Grid>
+              </>
+            ) : (
+              <Typography className="no-results-msg">
+                No recipes found for "{query}". Try a different search!
+              </Typography>
+            )}
+          </Container>
+        </section>
+      )}
+    </>
   );
 };
 

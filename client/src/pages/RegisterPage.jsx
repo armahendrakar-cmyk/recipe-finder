@@ -77,7 +77,7 @@ const RegisterPage = () => {
         }}
       >
         <Typography component="h1" variant="h5">
-          Log In
+          Register
         </Typography>
 
         {/* We use Box as our form element for easy styling with `sx`. */}
@@ -130,7 +130,7 @@ const RegisterPage = () => {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Log In
+            Register
           </Button>
         </Box>
       </Box>

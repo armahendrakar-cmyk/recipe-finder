@@ -1,25 +1,294 @@
 /* src/pages/HomePage.css */
 
-.home-page {
-  /* Center the content and add some padding */
-  max-width: 1200px;
+/* Hero Section */
+.hero-section {
+  position: relative;
+  padding: 5rem 2rem 3.5rem;
+  text-align: center;
+  overflow: hidden;
+  background-color: #fdf8f2;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.35;
+}
+
+.hero-blob-1 {
+  width: 420px;
+  height: 420px;
+  background: #f5c842;
+  top: -120px;
+  left: -100px;
+}
+
+.hero-blob-2 {
+  width: 300px;
+  height: 300px;
+  background: #e87d3e;
+  top: 0;
+  right: -80px;
+  opacity: 0.2;
+}
+
+.hero-blob-3 {
+  width: 260px;
+  height: 260px;
+  background: #4caf7d;
+  bottom: -60px;
+  left: 35%;
+  opacity: 0.18;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
   margin: 0 auto;
-  padding: 2rem;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(196, 125, 26, 0.1);
+  border: 1px solid rgba(196, 125, 26, 0.25);
+  color: #c47d1a;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.35rem 1rem;
+  border-radius: 100px;
+  margin-bottom: 1.25rem;
+  animation: fadeUp 0.5s ease both 0.1s;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif !important;
+  font-size: clamp(2.4rem, 5vw, 3.8rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.1 !important;
+  color: #1a1208 !important;
+  letter-spacing: -0.03em !important;
+  margin-bottom: 1rem !important;
+  animation: fadeUp 0.5s ease both 0.2s;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: #c47d1a;
+}
+
+.hero-subtitle {
+  font-size: 1.05rem !important;
+  color: #6b5030 !important;
+  font-weight: 300 !important;
+  max-width: 480px;
+  margin: 0 auto 2.5rem !important;
+  line-height: 1.7 !important;
+  animation: fadeUp 0.5s ease both 0.3s;
+}
+
+/* Search Bar */
+.search-wrapper {
+  max-width: 640px;
+  margin: 0 auto 1.25rem;
+  animation: fadeUp 0.5s ease both 0.4s;
+}
+
+.search-bar-inner {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1.5px solid rgba(196, 125, 26, 0.25);
+  border-radius: 16px;
+  padding: 0.45rem 0.45rem 0.45rem 1.1rem;
+  box-shadow: 0 8px 32px rgba(196, 125, 26, 0.1), 0 2px 8px rgba(0,0,0,0.05);
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.search-bar-inner:focus-within {
+  border-color: #c47d1a;
+  box-shadow: 0 8px 40px rgba(196, 125, 26, 0.18), 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.search-icon {
+  font-size: 1.1rem;
+  margin-right: 10px;
+  flex-shrink: 0;
+  color: #c47d1a;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  color: #1a1208;
+  background: transparent;
+  font-weight: 400;
+}
+
+.search-input::placeholder {
+  color: #b08060;
+}
+
+.search-submit-btn {
+  background: linear-gradient(135deg, #e8a020, #c47d1a) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 12px !important;
+  padding: 0.7rem 1.4rem !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 0.88rem !important;
+  font-weight: 500 !important;
+  cursor: pointer;
+  text-transform: none !important;
+  transition: all 0.2s !important;
+  white-space: nowrap;
+  height: auto !important;
+  min-width: unset !important;
+}
+
+.search-submit-btn:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 16px rgba(196, 125, 26, 0.4) !important;
+}
+
+/* Quick Tags */
+.quick-tags {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  animation: fadeUp 0.5s ease both 0.5s;
+}
+
+.tag-label {
+  font-size: 0.78rem;
+  color: #9a7050;
+  font-weight: 400;
+}
+
+.quick-tag {
+  background: #fff;
+  border: 1px solid rgba(196, 125, 26, 0.2);
+  color: #7a5030;
+  font-size: 0.78rem;
+  padding: 0.28rem 0.7rem;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+}
+
+.quick-tag:hover {
+  background: #c47d1a;
+  color: #fff;
+  border-color: #c47d1a;
+}
+
+/* Categories Section */
+.categories-section {
+  padding: 2.5rem 2rem 3rem;
+  background: #fff;
+  border-top: 1px solid rgba(200, 160, 80, 0.12);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif !important;
+  font-size: 1.55rem !important;
+  font-weight: 700 !important;
+  color: #1a1208 !important;
+  margin-bottom: 0.3rem !important;
+}
+
+.section-subtitle {
+  font-size: 0.88rem !important;
+  color: #8a6040 !important;
+  font-weight: 300 !important;
+}
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.cat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 1.4rem 0.75rem;
+  background: #fdf8f2;
+  border: 1px solid rgba(200, 160, 80, 0.15);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
   text-align: center;
 }
 
-.recipe-list {
-  /* This is the core of our grid layout */
-  display: grid;
-  /* Create responsive columns. It will try to fit as many 300px columns as it can. */
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2rem; /* The space between the grid items (our cards) */
-  margin-top: 2rem;
-  text-align: left; /* Reset text alignment for the cards themselves */
+.cat-card:hover {
+  background: #c47d1a;
+  border-color: #c47d1a;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(196, 125, 26, 0.25);
 }
 
-.no-results-message {
+.cat-card:hover .cat-name {
+  color: #fff;
+}
+
+.cat-emoji {
+  font-size: 1.9rem;
+  line-height: 1;
+}
+
+.cat-name {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #5a4020;
+  transition: color 0.2s;
+}
+
+/* Results Section */
+.results-section {
+  padding: 2.5rem 2rem 3rem;
+  background: #fdf8f2;
+}
+
+.no-results-msg {
+  text-align: center;
   margin-top: 2rem;
-  font-size: 1.2rem;
-  color: #666;
+  color: #8a6040 !important;
+  font-size: 1rem !important;
+  font-weight: 300 !important;
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
 }

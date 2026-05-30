@@ -4,19 +4,38 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background-color: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem 3rem;
+  background-color: rgba(253, 248, 242, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(200, 160, 80, 0.15);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
 .navbar-brand .navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Playfair Display', serif;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #f0a500;
+  color: #c47d1a;
   text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.navbar-logo-icon {
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(135deg, #e8a020, #c47d1a);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
 }
 
 .navbar-links {
@@ -25,37 +44,60 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 1.5rem;
+  gap: 0.35rem;
 }
 
 .navbar-links a {
   text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  transition: color 0.2s;
+  color: #5a4020;
+  font-size: 0.9rem;
+  font-weight: 400;
+  padding: 0.45rem 1rem;
+  border-radius: 8px;
+  transition: all 0.2s;
 }
 
 .navbar-links a:hover {
-  color: #f0a500;
+  background-color: rgba(196, 125, 26, 0.1);
+  color: #c47d1a;
 }
 
 .navbar-greeting {
-  color: #555;
-  font-weight: 500;
+  color: #8a6040;
+  font-size: 0.9rem;
+  font-weight: 400;
+  padding: 0.45rem 0.75rem;
 }
 
 .logout-button {
   background: none;
-  border: 1px solid #f0a500;
-  color: #f0a500;
-  padding: 0.5rem 1rem;
+  border: 1px solid rgba(196, 125, 26, 0.4);
+  color: #c47d1a;
+  padding: 0.45rem 1.1rem;
   border-radius: 8px;
   cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
   font-weight: 500;
-  transition: background-color 0.2s, color 0.2s;
+  transition: all 0.2s;
 }
 
 .logout-button:hover {
-  background-color: #f0a500;
+  background-color: #c47d1a;
   color: #fff;
+  border-color: #c47d1a;
+}
+
+.nav-register-btn {
+  background: linear-gradient(135deg, #e8a020, #c47d1a) !important;
+  color: #fff !important;
+  font-weight: 500 !important;
+  padding: 0.45rem 1.2rem !important;
+  border-radius: 8px !important;
+  border: none !important;
+}
+
+.nav-register-btn:hover {
+  background: linear-gradient(135deg, #d49018, #a8681a) !important;
+  color: #fff !important;
 }
